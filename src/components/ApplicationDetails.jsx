@@ -43,7 +43,7 @@ export default function ApplicationDetails({ doctor, onApprove, onReject }) {
       <h2 className="application-details-heading">Application Details</h2>
 
       <div className="application-details-body">
-        <h3 className="application-details-doctor-name">{doctor.name}</h3>
+        <h3 className="application-details-doctor-name">{doctor.fullname}</h3>
 
         <div className="application-details-fields">
           <div className="detail-field">

@@ -1,0 +1,80 @@
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/FoundersGrotesk-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/FoundersGrotesk-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/FoundersGrotesk-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/FoundersGrotesk-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Custom';
+  src: url('./assets/Helvetica.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Custom';
+  src: url('./assets/Helvetica-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-primary: #6D7EB5;
+  --color-primary-light: #8EB392;
+  --color-danger: #F8545D;
+  --color-bg-gradient: linear-gradient(192deg, #B6C0F9 12.02%, #F1EDF8 34.13%, #F1EDF8 70.19%, #E9FCD0 100%);
+  --color-sidebar-bg: rgba(255, 255, 255, 0.40);
+  --color-panel-bg: rgba(255, 255, 255, 0.40);
+  --color-text-muted: rgba(71, 71, 71, 0.50);
+  --color-text-muted-dark: rgba(0, 0, 0, 0.50);
+  --color-text-label: rgba(0, 0, 0, 0.60);
+  --font-founders: 'Founders Grotesk', -apple-system, Roboto, Helvetica, sans-serif;
+  --font-helvetica: 'Helvetica Custom', Helvetica, -apple-system, Roboto, sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-founders);
+  background: var(--color-bg-gradient);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: var(--font-founders);
+}

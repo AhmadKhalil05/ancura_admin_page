@@ -1,0 +1,162 @@
+.application-details-panel {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.11);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 26px 28px 28px;
+  gap: 20px;
+  width: 380px;
+  flex-shrink: 0;
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+}
+
+.application-details-panel--empty {
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.application-details-empty-msg {
+  font-family: var(--font-founders);
+  font-size: 15px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.application-details-heading {
+  font-family: var(--font-founders);
+  font-size: 22px;
+  font-weight: 500;
+  color: #000;
+  padding-bottom: 12px;
+  border-bottom: 0.2px solid rgba(0, 0, 0, 0.15);
+}
+
+.application-details-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.application-details-doctor-name {
+  font-family: var(--font-founders);
+  font-size: 17px;
+  font-weight: 500;
+  color: #000;
+}
+
+.application-details-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.detail-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-field-label {
+  font-family: var(--font-helvetica);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-text-label);
+}
+
+.detail-field-value {
+  font-family: var(--font-founders);
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
+}
+
+.application-certifications {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.certification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.certification-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #F5F5F5;
+  border-radius: 11px;
+  border: 0.4px solid var(--color-primary);
+}
+
+.certification-name {
+  font-family: var(--font-founders);
+  font-size: 10px;
+  font-weight: 400;
+  color: #000;
+  flex: 1;
+}
+
+.certification-view-btn {
+  background: #fff;
+  border: 0.4px solid var(--color-primary);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.certification-view-btn:hover {
+  background: rgba(109, 126, 181, 0.1);
+}
+
+.application-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.action-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 11px;
+  font-family: var(--font-founders);
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  transition: opacity 0.2s;
+}
+
+.action-btn:hover {
+  opacity: 0.88;
+}
+
+.action-btn--approve {
+  background: #8EB392;
+}
+
+.action-btn--reject {
+  background: #F8545D;
+}
+
+@media (max-width: 1100px) {
+  .application-details-panel {
+    width: 100%;
+    max-height: none;
+  }
+}

@@ -1,11 +1,38 @@
 import { useState } from 'react';
 import Sidebar from './components/Sidebar';
-import DoctorList, { DOCTORS } from './components/DoctorList';
+import DoctorList from './components/DoctorList';
 import ApplicationDetails from './components/ApplicationDetails';
 import './App.css';
+import { supabase } from './supa​baseClient';
+
+
+
+
+
 
 export default function App() {
-  const [selectedDoctor, setSelectedDoctor] = useState(DOCTORS[0]);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [doctors, setDoctors] = useState([]);
+
+
+  async function handleApprove(doc) {
+    await supabase
+      .from('doctor')
+      .update({ verify_status: 'approved' })
+      .eq('id', doc.id);
+  
+      console.log(doc)
+      window.location.reload();
+  }
+  
+  async function handleReject(doc) {
+    await supabase
+      .from('doctor')
+      .update({ verify_status: 'rejected' })
+      .eq('id', doc.id);
+  
+      window.location.reload(); 
+  }
 
   return (
     <div className="app-layout">
@@ -21,12 +48,14 @@ export default function App() {
           <DoctorList
             selectedId={selectedDoctor?.id}
             onSelect={setSelectedDoctor}
+            onDataLoaded={setDoctors}
+
           />
 
           <ApplicationDetails
             doctor={selectedDoctor}
-            onApprove={(doc) => alert(`Approved: ${doc.name}`)}
-            onReject={(doc) => alert(`Rejected: ${doc.name}`)}
+            onApprove={handleApprove}
+            onReject={handleReject}
           />
         </div>
       </main>

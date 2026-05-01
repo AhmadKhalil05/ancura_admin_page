@@ -1,4 +1,7 @@
 import './DoctorList.css';
+import { useEffect, useState } from 'react';
+import { supabase } from '../supa​baseClient';
+import './DoctorList.css';
 
 const EyeIcon = () => (
   <svg width="19" height="10" viewBox="0 0 19 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,35 +25,80 @@ const DOCTORS = [
   { id: 5, name: 'Dr. Omar Youssef', licenseNumber: 'PSY-2017-3366', dateApplied: '2026-02-01' },
 ];
 
-export default function DoctorList({ selectedId, onSelect }) {
+export default function DoctorList({ selectedId, onSelect, onDataLoaded  }) {
+
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    fetchDoctors();
+  }, []);
+
+  
+  async function fetchDoctors() {
+    const { data, error } = await supabase
+      .from('doctor')
+      .select('*');
+
+    if (error) {
+      console.error(error);
+    } else {
+      setDoctors(data);
+    }
+
+    if (onDataLoaded) {
+      onDataLoaded(data);
+    }
+  
+  }
+
+    
   return (
     <div className="doctor-list-panel">
       <div className="doctor-list-header">
-        <h2 className="doctor-list-title">All doctors ({DOCTORS.length * 2})</h2>
+        <h2 className="doctor-list-title">All doctors ({doctors.length * 2})</h2>
       </div>
 
       <div className="doctor-list-table-header">
         <span>Doctor Name</span>
         <span>Date Applied</span>
+        <span>Verify Status</span>
         <span>Actions</span>
       </div>
 
-      <div className="doctor-list-rows">
-        {DOCTORS.map((doc) => (
-          <div key={doc.id} className={`doctor-row ${selectedId === doc.id ? 'doctor-row--selected' : ''}`}>
-            <div className="doctor-row-info">
-              <span className="doctor-row-name">{doc.name}</span>
-              <span className="doctor-row-license">{doc.licenseNumber}</span>
-            </div>
-            <span className="doctor-row-date">{doc.dateApplied}</span>
-            <button className="view-details-btn" onClick={() => onSelect(doc)}>
-              <EyeIcon />
-              View Details
-            </button>
-          </div>
-        ))}
-      </div>
+{doctors.map((doc) => (
+  <div
+    key={doc.id}
+    className={`doctor-row ${
+      selectedId === doc.id ? 'doctor-row--selected' : ''
+    }`}
+  >
+    <div className="doctor-row-info">
+      <span className="doctor-row-name">{doc.fullname}</span>
+      <span className="doctor-row-license">ID</span>
     </div>
+
+    <span className="doctor-row-date">
+      {new Date(doc.created_at).toLocaleDateString()}
+    </span>
+
+    <span className={`doctor-status status-${doc.verify_status}`}>
+      {doc.verify_status}
+    </span>
+
+    <button
+      className="view-details-btn"
+      onClick={() => onSelect(doc)}
+    >
+      <EyeIcon />
+      View Details
+    </button>
+
+   
+  </div>
+))}
+
+
+ </div>
   );
 }
 
